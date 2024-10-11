@@ -1,3 +1,28 @@
-<div>
-    <li></li>
+<div class="car-card" *ngIf="autoDetails">
+  <div class="car-details">
+    <h2>{{ autoDetails?.modele }} <a href="#">View more...</a></h2>
+
+    <div class="car-info">
+      <p><strong>Make</strong></p>
+      <p>{{ autoDetails.marque }}</p>
+    </div>
+    <div class="car-info">
+      <p><strong>Model</strong></p>
+      <p>{{ autoDetails.modele }}</p>
+    </div>
+    <div class="car-info">
+      <p><strong>Price</strong></p>
+      <p>{{ autoDetails.prix }} DNT</p>
+    </div>
+    <div class="car-info">
+      <p><strong>Power</strong></p>
+      <p>{{ autoDetails.puissance }} CV</p>
+    </div>
+    <div class="car-info">
+      <p>{{ autoDetails.nombres }} Units available</p>
+    </div>
+    <div class="car-image">
+      <img [src]="autoDetails.photo" alt="{{ autoDetails.marque }} {{ autoDetails.modele }}" />
+    </div>
+  </div>
 </div>

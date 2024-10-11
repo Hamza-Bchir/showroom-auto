@@ -1,0 +1,29 @@
+.car-card {
+    display: flex;
+    border-bottom: 1px solid #008c9e;
+    padding: 10px 0;
+  }
+  
+  .car-details {
+    flex: 2;
+    padding-right: 20px;
+  }
+  
+  .car-info {
+    margin: 10px 0;
+    border-bottom: 1px solid #008c9e;
+  }
+  
+  .car-info p {
+    margin: 0;
+  }
+  
+  .car-image {
+    flex: 1;
+  }
+  
+  .car-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  

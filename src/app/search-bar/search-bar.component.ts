@@ -1,26 +1,33 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Auto } from '../auto';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.css'
 })
 export class SearchBarComponent {
 
   @Input() autos : Auto[] = [];
-  @Output() autosFound = new EventEmitter<Auto[]>();
+  @Output() selectAutoEvent = new EventEmitter<Auto>();
+  matchedAutos : Auto[] = [];
   searchAutoList(marque : String){
-    let matchedAutos : Auto[] = [];
+    this.matchedAutos = []
     this.autos.forEach(auto => {
-      if(auto.marque.toLowerCase() == marque.toLowerCase()){
-        matchedAutos.push(auto)
+      if(auto.marque.toLowerCase().includes(marque.toLowerCase())){
+        this.matchedAutos.push(auto)
       }
     })
+  }
+  
+  selectedAuto(auto : Auto){
+    console.log("hello")
+    console.log(auto)
+    console.log(typeof(auto))
+    this.selectAutoEvent.emit(auto);
 
-    console.log(matchedAutos)
-    this.autosFound.emit(matchedAutos);
   }
 
 }
