@@ -3,7 +3,7 @@
         <label class="label">Brand</label>
         <input (input)="searchAutoList(make.value)" type="text" id="brand" class="input-field" placeholder="Sample : BMW" #make>
         <input type="button" class="search-button" value="Search" name="search" (click)="searchAutoList(make.value)">
-    </form><br>
+    </form>
     <div *ngIf="matchedAutos.length > 0">
         <div *ngFor = "let auto of matchedAutos">
             <p>{{auto.marque}} {{auto.modele}} <a href="#" (click)="selectedAuto(auto)">View more ...</a></p>

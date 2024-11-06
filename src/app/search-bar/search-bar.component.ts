@@ -23,11 +23,7 @@ export class SearchBarComponent {
   }
   
   selectedAuto(auto : Auto){
-    console.log("hello")
-    console.log(auto)
-    console.log(typeof(auto))
     this.selectAutoEvent.emit(auto);
-
   }
 
 }
