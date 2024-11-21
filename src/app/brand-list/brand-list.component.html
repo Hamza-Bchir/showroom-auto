@@ -1,0 +1,6 @@
+<div class="brand-container">
+    <a *ngFor="let image of brand_images" class="brand-link" [routerLink]="['/brand-details', image.name]" (click)="navigateToCars(image.name)">
+      <img [src]="image.path" [alt]="image.name" width="150" />
+    </a>
+  </div>
+  

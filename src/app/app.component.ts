@@ -7,11 +7,14 @@ import { AutoListComponent } from "./auto-list/auto-list.component";
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { map } from 'rxjs';
+import { BrandListComponent } from "./brand-list/brand-list.component";
+import { CarListComponent } from "./car-list/car-list.component";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeadbarComponent, SearchBarComponent, AutoListComponent],
+  imports: [RouterOutlet, HeadbarComponent, SearchBarComponent, AutoListComponent, BrandListComponent, CarListComponent, RouterModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -20,6 +23,7 @@ export class AppComponent {
   autoList: Auto[] = [];
   apiUrl = environment.apiUrl
   http = inject(HttpClient)
+
 
 
   constructor() {
