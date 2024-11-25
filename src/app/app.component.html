@@ -1,4 +1,3 @@
 <app-headbar></app-headbar>
-<app-search-bar [autos] = "autoList" (selectAutoEvent)="updateAuto($event)"></app-search-bar>
-<app-auto-list [autoDetails]="selected"></app-auto-list>
-<app-brand-list></app-brand-list>
+<app-search-bar (searchEvent)="onSearch($event)"></app-search-bar>
+<router-outlet></router-outlet>

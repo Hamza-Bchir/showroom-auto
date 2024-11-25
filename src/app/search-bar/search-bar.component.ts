@@ -10,20 +10,11 @@ import { CommonModule } from '@angular/common';
 })
 export class SearchBarComponent {
 
-  @Input() autos : Auto[] = [];
-  @Output() selectAutoEvent = new EventEmitter<Auto>();
-  matchedAutos : Auto[] = [];
-  searchAutoList(marque : String){
-    this.matchedAutos = []
-    this.autos.forEach(auto => {
-      if(auto.marque.toLowerCase().includes(marque.toLowerCase())){
-        this.matchedAutos.push(auto)
-      }
-    })
-  }
-  
-  selectedAuto(auto : Auto){
-    this.selectAutoEvent.emit(auto);
-  }
+@Output() searchEvent = new EventEmitter<string>();
 
+  onSearch(searchTerm: string): void {
+    if (searchTerm.trim()) {
+      this.searchEvent.emit(searchTerm);
+    }
+  }
 }

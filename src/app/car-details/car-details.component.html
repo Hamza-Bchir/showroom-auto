@@ -1,0 +1,10 @@
+<div *ngIf="car; else notFound">
+    <h2>{{ car.marque }} {{ car.modele }}</h2>
+    <p>Price: {{ car.prix }} TND</p>
+    <p>Power: {{ car.puissance }} HP</p>
+    <img [src]="car.photo" alt="{{ car.modele }}" />
+  </div>
+  <ng-template #notFound>
+    <p>Car not found.</p>
+  </ng-template>
+  

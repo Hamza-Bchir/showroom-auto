@@ -32,6 +32,7 @@ export class BrandListComponent {
 
 
   navigateToCars(brand: string){
+    console.log("hay")
     this.router.navigate(['/cars', brand]);
   }
 

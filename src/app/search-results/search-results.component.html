@@ -1,0 +1,14 @@
+<h2>Search Results for "{{ searchTerm }}"</h2>
+<div *ngIf="filteredCars.length > 0; else noResults">
+  <ul>
+    <li *ngFor="let car of filteredCars">
+      <a [routerLink]="['/car-details', car.id]">
+        {{ car.marque }} {{ car.modele }}
+      </a>
+    </li>
+  </ul>
+</div>
+<ng-template #noResults>
+  <p>No results found for "{{ searchTerm }}".</p>
+</ng-template>
+

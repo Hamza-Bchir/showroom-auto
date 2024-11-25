@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { HeadbarComponent } from './headbar/headbar.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { Auto } from './auto';
@@ -10,11 +10,14 @@ import { map } from 'rxjs';
 import { BrandListComponent } from "./brand-list/brand-list.component";
 import { CarListComponent } from "./car-list/car-list.component";
 import { RouterModule } from '@angular/router';
+import { CarService } from './car.service';
+
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeadbarComponent, SearchBarComponent, AutoListComponent, BrandListComponent, CarListComponent, RouterModule],
+  imports: [RouterOutlet, HeadbarComponent, SearchBarComponent, AutoListComponent, BrandListComponent, RouterModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -26,7 +29,7 @@ export class AppComponent {
 
 
 
-  constructor() {
+  constructor(private carService: CarService, private router: Router) {
     this.http.get<any[]>(this.apiUrl)
     .pipe(
       map(data => data.map(item => ({
@@ -42,8 +45,16 @@ export class AppComponent {
       this.autoList = transformedData;
       console.log(this.autoList)
     })
-  }
 
+
+    this.carService.setCarData(this.autoList);
+
+
+  }
+  onSearch(searchTerm: string): void {
+    // Navigate to the results page with the search term as a query parameter
+    this.router.navigate(['/search-results'], { queryParams: { q: searchTerm } });
+  }
   
 
  selected?: Auto;
@@ -53,4 +64,6 @@ export class AppComponent {
     //console.log(selectedAuto)
     this.selected = selectedAuto;
   }
+
+
 }
