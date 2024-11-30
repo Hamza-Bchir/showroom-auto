@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Auto } from './auto';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +20,18 @@ export class CarService {
     return this.carData;
   }
   
-
+  searchCars(query: string): Auto[] {
+    console.log("Heyy")
+    console.log(this.carData)
+    const lowerCaseQuery = query.toLowerCase();
+    return this.carData.filter(
+      (car) =>
+        car.marque.toLowerCase().includes(lowerCaseQuery) ||
+        car.modele.toLowerCase().includes(lowerCaseQuery)
+    );
+  }
+  
+  
 
   getCarPhoto(carId: Number): Observable<string> {
     console.log(this.apiUrl)

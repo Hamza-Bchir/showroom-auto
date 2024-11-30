@@ -1,17 +1,11 @@
-<h2>{{ brand }} Models</h2>
-<table class="car-table">
-  <thead>
-    <tr>
-      <th>Model</th>
-      <th>Price</th>
-      <th>Power (HP)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let car of cars">
-      <td>{{ car.modele }}</td>
-      <td>{{ car.prix }} TND</td>
-      <td>{{ car.puissance }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="car-list">
+  <div class="car-card" *ngFor="let car of cars">
+    <img [src]="car.photo" alt="{{ car.modele }}" class="car-image" />
+    <div class="car-info">
+      <h3>{{ car.modele }}</h3>
+      <p><strong>Price:</strong> {{ car.prix }} TND</p>
+      <p><strong>Power:</strong> {{ car.puissance }} HP</p>
+      <a [routerLink]="['/car-details', car.id]" class="details-link">View Details</a>
+    </div>
+  </div>
+</div>

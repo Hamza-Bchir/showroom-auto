@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Auto } from '../auto';
 import { ActivatedRoute } from '@angular/router';
 import { CarService } from '../car.service';
@@ -13,31 +13,27 @@ import { CommonModule } from '@angular/common';
   templateUrl: './search-results.component.html',
   styleUrl: './search-results.component.css'
 })
-export class SearchResultsComponent {
+
+export class SearchResultsComponent implements OnInit {
+  results: Auto[] = [];
   searchTerm: string = '';
-  cars: Auto[] = [];
-  filteredCars: Auto[] = [];
 
   constructor(private route: ActivatedRoute, private carService: CarService) {}
 
   ngOnInit(): void {
-    // Get the search term from query parameters
-    this.route.queryParamMap.subscribe(params => {
-      this.searchTerm = params.get('q') || '';
-      this.updateResults();
+    this.route.queryParams.subscribe((params) => {
+      this.searchTerm = params['q'];
+      if (this.searchTerm) {
+        console.log("hey1")
+        this.results = this.carService.searchCars(this.searchTerm);
+        this.loadCarImages();
+      }
     });
   }
 
-  updateResults(): void {
-    const allCars = this.carService.getCarData(); // Get all cars
-    this.filteredCars = allCars.filter(car =>
-      car.marque.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      car.modele.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
-
-    // Fetch photos for each car in the filtered list
-    this.filteredCars.forEach(car => {
-      car.photo = this.carService.getCarPhoto2(car.id)
+  loadCarImages(): void {
+    this.results.forEach((car) => {
+        car.photo = this.carService.getCarPhoto2(car.id);
     });
   }
 }
